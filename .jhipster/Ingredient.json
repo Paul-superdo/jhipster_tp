@@ -1,0 +1,26 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230620133736",
+  "entityTableName": "ingredient",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "portions",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Ingredient",
+  "relationships": [],
+  "searchEngine": "no"
+}

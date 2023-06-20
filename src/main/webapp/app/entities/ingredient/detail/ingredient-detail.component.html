@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ingredient">
+      <h2 data-cy="ingredientDetailsHeading"><span jhiTranslate="myApp.ingredient.detail.title">Ingredient</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ingredient.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.ingredient.name">Name</span></dt>
+        <dd>
+          <span>{{ ingredient.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.ingredient.description">Description</span></dt>
+        <dd>
+          <span>{{ ingredient.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.ingredient.portions">Portions</span></dt>
+        <dd>
+          <span>{{ ingredient.portions }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.ingredient.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ ingredient.creationDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.ingredient.recipe">Recipe</span></dt>
+        <dd>
+          <div *ngIf="ingredient.recipe">
+            <a [routerLink]="['/recipe', ingredient.recipe.id, 'view']">{{ ingredient.recipe.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ingredient', ingredient.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

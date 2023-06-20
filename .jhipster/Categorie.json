@@ -1,0 +1,22 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230620133737",
+  "entityTableName": "categorie",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Categorie",
+  "relationships": [],
+  "searchEngine": "no"
+}
