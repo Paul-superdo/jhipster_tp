@@ -1,0 +1,34 @@
+{
+  "myApp": {
+    "recipe": {
+      "home": {
+        "title": "Recipes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Recipe",
+        "createOrEditLabel": "Create or edit a Recipe",
+        "notFound": "No Recipes found"
+      },
+      "created": "A new Recipe is created with identifier {{ param }}",
+      "updated": "A Recipe is updated with identifier {{ param }}",
+      "deleted": "A Recipe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Recipe {{ id }}?"
+      },
+      "detail": {
+        "title": "Recipe"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "cookingTime": "Cooking Time",
+      "rate": "Rate",
+      "imageUrl": "Image Url",
+      "creationDate": "Creation Date",
+      "ingredient": "Ingredient",
+      "comment": "Comment",
+      "user": "User",
+      "categorie": "Categorie",
+      "ingredient": "Ingredient"
+    }
+  }
+}

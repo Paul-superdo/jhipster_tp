@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="RecipeHeading">
+    <span jhiTranslate="myApp.recipe.home.title">Recipes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.recipe.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-recipe"
+        [routerLink]="['/recipe/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.recipe.home.createLabel"> Create a new Recipe </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="recipes?.length === 0">
+    <span jhiTranslate="myApp.recipe.home.notFound">No Recipes found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="recipes && recipes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.title">Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cookingTime">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.cookingTime">Cooking Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rate">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.rate">Rate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="imageUrl">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.imageUrl">Image Url</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="creationDate">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.creationDate">Creation Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="user.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.user">User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categorie.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.categorie">Categorie</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ingredient.id">
+            <div class="d-flex">
+              <span jhiTranslate="myApp.recipe.ingredient">Ingredient</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recipe of recipes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/recipe', recipe.id, 'view']">{{ recipe.id }}</a>
+          </td>
+          <td>{{ recipe.title }}</td>
+          <td>{{ recipe.description }}</td>
+          <td>{{ recipe.cookingTime }}</td>
+          <td>{{ recipe.rate }}</td>
+          <td>{{ recipe.imageUrl }}</td>
+          <td>{{ recipe.creationDate | formatMediumDatetime }}</td>
+          <td>
+            {{ recipe.user?.id }}
+          </td>
+          <td>
+            <div *ngIf="recipe.categorie">
+              <a [routerLink]="['/categorie', recipe.categorie.id, 'view']">{{ recipe.categorie.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="recipe.ingredient">
+              <a [routerLink]="['/ingredient', recipe.ingredient.id, 'view']">{{ recipe.ingredient.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/recipe', recipe.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/recipe', recipe.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(recipe)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

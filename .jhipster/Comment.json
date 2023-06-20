@@ -1,0 +1,18 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20230620133739",
+  "entityTableName": "comment",
+  "fields": [
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Comment",
+  "relationships": [],
+  "searchEngine": "no"
+}

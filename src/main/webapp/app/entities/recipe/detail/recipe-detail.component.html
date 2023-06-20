@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="recipe">
+      <h2 data-cy="recipeDetailsHeading"><span jhiTranslate="myApp.recipe.detail.title">Recipe</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ recipe.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.title">Title</span></dt>
+        <dd>
+          <span>{{ recipe.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.description">Description</span></dt>
+        <dd>
+          <span>{{ recipe.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.cookingTime">Cooking Time</span></dt>
+        <dd>
+          <span>{{ recipe.cookingTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.rate">Rate</span></dt>
+        <dd>
+          <span>{{ recipe.rate }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.imageUrl">Image Url</span></dt>
+        <dd>
+          <span>{{ recipe.imageUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ recipe.creationDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.user">User</span></dt>
+        <dd>
+          <span>{{ recipe.user?.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.categorie">Categorie</span></dt>
+        <dd>
+          <div *ngIf="recipe.categorie">
+            <a [routerLink]="['/categorie', recipe.categorie.id, 'view']">{{ recipe.categorie.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.recipe.ingredient">Ingredient</span></dt>
+        <dd>
+          <div *ngIf="recipe.ingredient">
+            <a [routerLink]="['/ingredient', recipe.ingredient.id, 'view']">{{ recipe.ingredient.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/recipe', recipe.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
